@@ -41,26 +41,26 @@
       
       <div class="hero-unit" id="create" style="display:none; width:90%">
         <div class="controls" style="float:center; width:100%">
-	        	<label for="subType">To start, choose a type:</label> <select id="subType">
+	        	<label class="control-label" for="subType">To start, choose a type of submission:</label> <select id="subType">
 											<option></option>
 											<option value="cap">Centralised</option>
 											<option value="cap_nap">PSUR CAP & NAP</option>
 											<option value="nap">PSUR NAP</option>
 								 		</select>
 								 		
-				<div id="caps" class="form-inline"><input style="width:10%"  type="text" id="inputValidate" size="30" class="input-small" placeholder="Sender RoutingId">
+				<div id="caps" class="form-inline"><input style="width:10%"  type="text" id="inputSender" size="30" class="input-small" placeholder="Sender RoutingId">
 							   <select style="width:10%" class="input-small" id="receipient">
 											<option value="default"></option>
 											<option value="ESUBPROD">Production</option>
 											<option value="ESUBTEST">Test</option>
 								 		</select>
-							   <input style="width:10%" type="text" id="inputValidate" size="30" class="input-small" placeholder="Product Number">
-							   <input style="width:10%" type="text" id="inputValidate" size="30" class="input-small" placeholder="Product Name">
-							   <input style="width:10%" type="text" id="inputValidate" size="30" class="input-small" placeholder="Submission Type">
-							   <input style="width:10%" type="text" id="inputValidate" size="30" class="input-small" placeholder="Sequence Number">
+							   <input style="width:10%" type="text" id="inputPNumber" size="30" class="input-small" placeholder="Product Number">
+							   <input style="width:10%" type="text" id="inputPName" size="30" class="input-small" placeholder="Product Name">
+							   <input style="width:10%" type="text" id="inputSubType" size="30" class="input-small" placeholder="Submission Type">
+							   <input style="width:10%" type="text" id="inputSeqnumber" size="30" class="input-small" placeholder="Sequence Number">
 				</div>
 				<div id="caps_naps"  class="form-inline">
-							   <input style="width:9%"  type="text" id="inputValidate" size="30" placeholder="Sender RoutingId">
+							   <input style="width:9%"  type="text" id="inputSender" size="30" placeholder="Sender RoutingId">
 							   <select style="width:8%" id="receipient" >
 											<option value="default"></option>
 											<option value="ESUBPROD">Production</option>
@@ -87,12 +87,13 @@
 							   <input style="width:10%" type="text" id="inputValidate" size="30" class="input-small" placeholder="Eurd Date">
 							   <input style="width:10%" type="text" id="inputValidate" size="30" class="input-small" placeholder="Submission Type">
 							   <input style="width:10%" type="text" id="inputValidate" size="30" class="input-small" placeholder="Sequence Number">
-				</div>		
-			 		
+				</div>	
         </div>
-        				<button id="generateBtn" class="btn btn-primary btn-large" type="button">Generate</button>		
+        <div style="float:center; margin-top:25px">	
+			 	<button id="generateBtn" class="btn btn-primary btn-large" type="button">Generate</button>
+			 	<div id=result></div>
+		</div>			
       </div>
-      
       <div class="hero-unit" id="validate" style="display:none">
       	<div class="control-group info" style="width:300">
 	      	<label class="control-label" for="inputValidate">Copy the filename and click validate:</label>
@@ -104,7 +105,9 @@
 	        <span style="display:none" class="help-inline">Something may have gone wrong</span>
 	     </div>
       </div>
-      <button id="bckBtn" class="btn btn-info btn-large" type="button">Back</button>
+      <div class="well">
+      	<button id="bckBtn" class="btn btn-info btn-large" style="" type="button">Back</button>
+      </div>
 <!--       <footer> -->
 <!--         <p>&copy; y-Dev Ltd. 2013</p> -->
 <!--       </footer> -->
