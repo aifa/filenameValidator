@@ -53,7 +53,7 @@
 											<option value="default"></option>
 											<option value="ESUBPROD">Production</option>
 											<option value="ESUBTEST">Test</option>
-								 		</select>
+							   </select>
 							   <input style="width:10%" type="text" id="inputPNumber" size="30" class="input-small" placeholder="Product Number">
 							   <input style="width:10%" type="text" id="inputPName" size="30" class="input-small" placeholder="Product Name">
 							   <input style="width:10%" type="text" id="inputSubType" size="30" class="input-small" placeholder="Submission Type">
@@ -66,27 +66,27 @@
 											<option value="ESUBPROD">Production</option>
 											<option value="ESUBTEST">Test</option>
 								 		</select>
-							   <input style="width:8%" type="text" id="inputValidate" size="30" class="input-small" placeholder="Product Number">
-							   <input style="width:9%" type="text" id="inputValidate" size="30" class="input-small" placeholder="Product Name">
-							   <input style="width:8%" type="text" id="inputValidate" size="30" class="input-small" placeholder="Eurd Id">
-							   <input style="width:9%" type="text" id="inputValidate" size="30" class="input-small" placeholder="Substance">
-							   <input style="width:8%" type="text" id="inputValidate" size="30" class="input-small" placeholder="MAH">
-							   <input style="width:8%" type="text" id="inputValidate" size="30" class="input-small" placeholder="Eurd Date">
-							   <input style="width:9%" type="text" id="inputValidate" size="30" class="input-small" placeholder="Submission Type">
-							   <input style="width:9%" type="text" id="inputValidate" size="30" class="input-small" placeholder="Sequence Number">
+							   <input style="width:8%" type="text" id="inputPnumber" size="30" class="input-small" placeholder="Product Number">
+							   <input style="width:9%" type="text" id="inputPName" size="30" class="input-small" placeholder="Product Name">
+							   <input style="width:8%" type="text" id="inputEurd" size="30" class="input-small" placeholder="Eurd Id">
+							   <input style="width:9%" type="text" id="inputSub" size="30" class="input-small" placeholder="Substance">
+							   <input style="width:8%" type="text" id="inputMAH" size="30" class="input-small" placeholder="MAH">
+							   <input style="width:8%" type="text" id="inputEurDate" size="30" class="input-small" placeholder="Eurd Date">
+							   <input style="width:9%" type="text" id="inputSubType" size="30" class="input-small" placeholder="Submission Type">
+							   <input style="width:9%" type="text" id="inputSeqNumber" size="30" class="input-small" placeholder="Sequence Number">
 				</div>
-				<div id="naps"  class="form-inline"><input style="width:10%"  type="text" id="inputValidate" size="30" class="input-small" placeholder="Sender RoutingId">
+				<div id="naps"  class="form-inline"><input style="width:10%"  type="text" id="inputSender" size="30" class="input-small" placeholder="Sender RoutingId">
 							   			<select style="width:10%" id="receipient">
 											<option value="default"></option>
 											<option value="ESUBPROD">Production</option>
 											<option value="ESUBTEST">Test</option>
 								 		</select>
-							   <input style="width:10%" type="text" id="inputValidate" size="30" class="input-small" placeholder="Eurd Id">
-							   <input style="width:10%" type="text" id="inputValidate" size="30" class="input-small" placeholder="Substance">
-							   <input style="width:10%" type="text" id="inputValidate" size="30" class="input-small" placeholder="MAH">
-							   <input style="width:10%" type="text" id="inputValidate" size="30" class="input-small" placeholder="Eurd Date">
-							   <input style="width:10%" type="text" id="inputValidate" size="30" class="input-small" placeholder="Submission Type">
-							   <input style="width:10%" type="text" id="inputValidate" size="30" class="input-small" placeholder="Sequence Number">
+							   <input style="width:10%" type="text" id="inputEurd" size="30" class="input-small" placeholder="Eurd Id">
+							   <input style="width:10%" type="text" id="inputSub" size="30" class="input-small" placeholder="Substance">
+							   <input style="width:10%" type="text" id="inputMAH" size="30" class="input-small" placeholder="MAH">
+							   <input style="width:10%" type="text" id="inputEurDate" size="30" class="input-small" placeholder="Eurd Date">
+							   <input style="width:10%" type="text" id="inputSubType" size="30" class="input-small" placeholder="Submission Type">
+							   <input style="width:10%" type="text" id="inputSeqNumber" size="30" class="input-small" placeholder="Sequence Number">
 				</div>	
         </div>
         <div style="float:center; margin-top:25px">	
@@ -138,7 +138,10 @@
 			$('#validate').hide();
 			$('#create').hide();
 			$('#init').show();
+			//clear all input
+			$(':input').val("");
 			$(this).hide();
+			
 		})
 		
 		$('#validateBtn').on('click', function(){
