@@ -161,7 +161,7 @@ body {
 					<label class="control-label" for="inputPnumber">Product
 						Number</label>
 					<div class="controls">
-						<input style="width: 30%" type="text" id="inputPnumber" name="inputPnumber" size="30"
+						<input style="width: 30%" type="text" id="inputPnumber" name="inputPNumber" size="30"
 							class="input-small" placeholder="Enter Product Number">
 					</div>
 				</div>
@@ -409,7 +409,11 @@ body {
 			};
 			
 		$(".generateBtn").on("click", function(){
-			alert(JSON.stringify($(this).closest("form").serializeJSON()));
+			var form = $(this).closest("form");
+			var data = JSON.stringify(form.serializeJSON());
+			$.post('compose/'+form.attr('id'), data, function(result){
+				alert(result);
+			}).fail(function() { alert("error"); });
 		});
 	});
 
