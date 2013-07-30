@@ -5,142 +5,342 @@
 <title>eSubmissions filename validator</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <!-- Le styles -->
-    <link href="../bootstrap/css/bootstrap.css" rel="stylesheet">
-    <style type="text/css">
-      body {
-        padding-top: 60px;
-        padding-bottom: 40px;
-      }
-    </style>
-    <link href="../bootstrap/css/bootstrap-responsive.css" rel="stylesheet">
+<!-- Le styles -->
+<link href="../bootstrap/css/bootstrap.css" rel="stylesheet">
+<style type="text/css">
+body {
+	padding-top: 60px;
+	padding-bottom: 40px;
+}
 
-    <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
-    <!--[if lt IE 9]>
+.generateBtn {
+	
+}
+</style>
+<link href="../bootstrap/css/bootstrap-responsive.css" rel="stylesheet">
+
+<!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+<!--[if lt IE 9]>
       <script src="../assets/js/html5shiv.js"></script>
     <![endif]-->
-    <!-- Fav and touch icons -->
-    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="../bootstrap/ico/apple-touch-icon-144-precomposed.png">
-    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="../bootstrap/ico/apple-touch-icon-114-precomposed.png">
-    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="../bootstrap/ico/apple-touch-icon-72-precomposed.png">
-    <link rel="apple-touch-icon-precomposed" href="../bootstrap/ico/apple-touch-icon-57-precomposed.png">
-    <link rel="shortcut icon" href="../bootstrap/ico/favicon.png">
-    
+<!-- Fav and touch icons -->
+<link rel="apple-touch-icon-precomposed" sizes="144x144"
+	href="../bootstrap/ico/apple-touch-icon-144-precomposed.png">
+<link rel="apple-touch-icon-precomposed" sizes="114x114"
+	href="../bootstrap/ico/apple-touch-icon-114-precomposed.png">
+<link rel="apple-touch-icon-precomposed" sizes="72x72"
+	href="../bootstrap/ico/apple-touch-icon-72-precomposed.png">
+<link rel="apple-touch-icon-precomposed"
+	href="../bootstrap/ico/apple-touch-icon-57-precomposed.png">
+<link rel="shortcut icon" href="../bootstrap/ico/favicon.png">
+
 </head>
 <body>
+	<div class="navbar navbar-fixed-top">
+		<div class="navbar-inner">
+			<div class="container">
+				<button id="bckBtn" class="btn btn-info btn-medium" type="button">Home</button>
+			</div>
+		</div>
+	</div>
 
-<div class="container" style="width:90%">
-      <!-- Main hero unit for a primary marketing message or call to action -->
-      <div class="hero-unit" id="init">
-        <p>What do you want to do next: </p>
-        <div style="float:center">
-	        <button id="composeBtn" class="btn btn-primary btn-large" style="width:300px; height:150px">Compose a new filename</button>
-	        <button id="validateBtn" class="btn btn-primary btn-large" style="width:300px; height:150px">Validate an existing filename</button>
-        </div>
-      </div>
-      
-      <div class="hero-unit" id="create" style="display:none; width:90%">
-        <div class="controls" style="float:center; width:100%">
-	        	<label class="control-label" for="subType">To start, choose a type of submission:</label> <select id="subType">
-											<option></option>
-											<option value="cap">Centralised</option>
-											<option value="cap_nap">PSUR CAP & NAP</option>
-											<option value="nap">PSUR NAP</option>
-								 		</select>
-								 		
-				<div id="caps" class="form-inline"><input style="width:10%"  type="text" id="inputSender" size="30" class="input-small" placeholder="Sender RoutingId">
-							   <select style="width:10%" class="input-small" id="receipient">
-											<option value="default"></option>
-											<option value="ESUBPROD">Production</option>
-											<option value="ESUBTEST">Test</option>
-							   </select>
-							   <input style="width:10%" type="text" id="inputPNumber" size="30" class="input-small" placeholder="Product Number">
-							   <input style="width:10%" type="text" id="inputPName" size="30" class="input-small" placeholder="Product Name">
-							   <input style="width:10%" type="text" id="inputSubType" size="30" class="input-small" placeholder="Submission Type">
-							   <input style="width:10%" type="text" id="inputSeqnumber" size="30" class="input-small" placeholder="Sequence Number">
+	<div class="container">
+		<!-- Main hero unit for a primary marketing message or call to action -->
+		<div class="hero-unit" id="init" style="align: center">
+			<div class="row">
+				<div class="span3 ">
+					<p>What do you want to do next:</p>
 				</div>
-				<div id="caps_naps"  class="form-inline">
-							   <input style="width:9%"  type="text" id="inputSender" size="30" placeholder="Sender RoutingId">
-							   <select style="width:8%" id="receipient" >
-											<option value="default"></option>
-											<option value="ESUBPROD">Production</option>
-											<option value="ESUBTEST">Test</option>
-								 		</select>
-							   <input style="width:8%" type="text" id="inputPnumber" size="30" class="input-small" placeholder="Product Number">
-							   <input style="width:9%" type="text" id="inputPName" size="30" class="input-small" placeholder="Product Name">
-							   <input style="width:8%" type="text" id="inputEurd" size="30" class="input-small" placeholder="Eurd Id">
-							   <input style="width:9%" type="text" id="inputSub" size="30" class="input-small" placeholder="Substance">
-							   <input style="width:8%" type="text" id="inputMAH" size="30" class="input-small" placeholder="MAH">
-							   <input style="width:8%" type="text" id="inputEurDate" size="30" class="input-small" placeholder="Eurd Date">
-							   <input style="width:9%" type="text" id="inputSubType" size="30" class="input-small" placeholder="Submission Type">
-							   <input style="width:9%" type="text" id="inputSeqNumber" size="30" class="input-small" placeholder="Sequence Number">
+			</div>
+			<div class="row">
+				<div class="span2 offset2">
+					<button id="composeBtn" class="btn btn-primary btn-large"
+						style="width: 250px; height: 150px">Compose a new
+						filename</button>
 				</div>
-				<div id="naps"  class="form-inline"><input style="width:10%"  type="text" id="inputSender" size="30" class="input-small" placeholder="Sender RoutingId">
-							   			<select style="width:10%" id="receipient">
-											<option value="default"></option>
-											<option value="ESUBPROD">Production</option>
-											<option value="ESUBTEST">Test</option>
-								 		</select>
-							   <input style="width:10%" type="text" id="inputEurd" size="30" class="input-small" placeholder="Eurd Id">
-							   <input style="width:10%" type="text" id="inputSub" size="30" class="input-small" placeholder="Substance">
-							   <input style="width:10%" type="text" id="inputMAH" size="30" class="input-small" placeholder="MAH">
-							   <input style="width:10%" type="text" id="inputEurDate" size="30" class="input-small" placeholder="Eurd Date">
-							   <input style="width:10%" type="text" id="inputSubType" size="30" class="input-small" placeholder="Submission Type">
-							   <input style="width:10%" type="text" id="inputSeqNumber" size="30" class="input-small" placeholder="Sequence Number">
-				</div>	
-        </div>
-        <div style="float:center; margin-top:25px">	
-			 	<button id="generateBtn" class="btn btn-primary btn-large" type="button">Generate</button>
-			 	<div id=result></div>
-		</div>			
-      </div>
-      <div class="hero-unit" id="validate" style="display:none">
-      	<div class="control-group info" style="width:300">
-	      	<label class="control-label" for="inputValidate">Copy the filename and click validate:</label>
-	        <div  class="control-group info" style="width:255">
-		        	<input type="text" id="inputValidate" size="255" style="width:80%">
-		        	<button id="validate" class="btn btn-primary btn-medium" type="button">Validate</button>
-	        </div>
-	        
-	        <span style="display:none" class="help-inline">Something may have gone wrong</span>
-	     </div>
-      </div>
-      <div class="well">
-      	<button id="bckBtn" class="btn btn-info btn-large" style="" type="button">Back</button>
-      </div>
-<!--       <footer> -->
-<!--         <p>&copy; y-Dev Ltd. 2013</p> -->
-<!--       </footer> -->
-</div> <!-- /container -->
- 
-<!-- Le javascript
+				<div class="span2 offset1">
+					<button id="validateBtn" class="btn btn-primary btn-large"
+						style="width: 250px; height: 150px">Validate an existing
+						filename</button>
+				</div>
+			</div>
+		</div>
+		<div id="create" style="display: none; width: 70%; float: center">
+
+			<div class="control-group">
+				<label class="control-label" for="subType">Choose a type of
+					submission:</label>
+				<div class="controls">
+					<select id="subType">
+						<option></option>
+						<option value="cap">Centralised</option>
+						<option value="cap_nap">PSUR CAP & NAP</option>
+						<option value="nap">PSUR NAP</option>
+					</select>
+				</div>
+
+			</div>
+			<form class="form-horizontal hero-unit" id="caps">
+				<legend>Enter the following details about the submission:</legend>
+				<div class="control-group">
+					<label class="control-label" for="inputSender">Sender
+						Routing Id:</label>
+					<div class="controls">
+						<input style="width: 30%" type="text" id="inputSender" name="inputSender" size="30"
+							class="input-small" placeholder="Enter Id" />
+					</div>
+				</div>
+				<div class="control-group">
+					<label class="control-label" for="receipient">Recipient:</label>
+					<div class="controls">
+						<select style="width: 20%" class="input-small" id="receipient" name="receipient">
+							<option value="default"></option>
+							<option value="ESUBPROD">Production</option>
+							<option value="ESUBTEST">Test</option>
+						</select>
+					</div>
+				</div>
+				<div class="control-group">
+					<label class="control-label" for="inputPNumber">Product
+						Number:</label>
+					<div class="controls">
+						<input style="width: 30%" type="text" id="inputPNumber" name="inputPNumber" size="30"
+							class="input-small" placeholder="Enter Product Number">
+					</div>
+				</div>
+				<div class="control-group">
+					<label class="control-label" for="inputPName">Product Name</label>
+					<div class="controls">
+						<input style="width: 30%" type="text" id="inputPName" name="inputPName" size="30"
+							class="input-small" placeholder="Enter Product Name">
+					</div>
+				</div>
+				<div class="control-group">
+					<label class="control-label" for="inputSubType">Submission
+						Type</label>
+					<div class="controls">
+						<input style="width: 30%" type="text" id="inputSubType" name="inputSubType" size="30"
+							class="input-small" placeholder="Enter Submission Type">
+					</div>
+				</div>
+				<div class="control-group">
+					<label class="control-label" for="inputSeqnumber">Sequence
+						Number</label>
+					<div class="controls">
+						<input style="width: 30%" type="text" id="inputSeqnumber"  name="inputSeqnumber"
+							size="30" class="input-small" placeholder="Enter Sequence Number">
+					</div>
+				</div>
+				<div style="float: center; margin-top: 25px">
+					<button class="btn btn-primary btn-large generateBtn" type="button">Generate
+						filename</button>
+					<div id=result></div>
+				</div>
+			</form>
+			<form id="caps_naps" class="form-horizontal hero-unit">
+				<legend>Enter the following details about the submission:</legend>
+				<div class="control-group">
+					<label class="control-label" for="inputSender">Sender
+						RoutingId</label>
+					<div class="controls">
+						<input style="width: 30%" type="text" id="inputSender" name="inputSender" size="30"
+							placeholder="Enter Sender RoutingId">
+					</div>
+				</div>
+				<div class="control-group">
+					<label class="control-label" for="receipient">Recipient</label>
+					<div class="controls">
+						<select style="width: 20%" id="receipient" name="receipient">
+							<option value="default"></option>
+							<option value="ESUBPROD">Production</option>
+							<option value="ESUBTEST">Test</option>
+						</select>
+					</div>
+				</div>
+				<div class="control-group">
+					<label class="control-label" for="inputPnumber">Product
+						Number</label>
+					<div class="controls">
+						<input style="width: 30%" type="text" id="inputPnumber" name="inputPnumber" size="30"
+							class="input-small" placeholder="Enter Product Number">
+					</div>
+				</div>
+				<div class="control-group">
+					<label class="control-label" for="inputPName">Product Name</label>
+					<div class="controls">
+						<input style="width: 30%" type="text" id="inputPName" name="inputPName" size="30"
+							class="input-small" placeholder="Enter Product Name">
+					</div>
+				</div>
+				<div class="control-group">
+					<label class="control-label" for="inputEurd">Eurd Id</label>
+					<div class="controls">
+						<input style="width: 30%" type="text" id="inputEurd" name="inputEurd" size="30"
+							class="input-small" placeholder="Enter Eurd Id">
+					</div>
+				</div>
+				<div class="control-group">
+					<label class="control-label" for="inputSub">Substance Name</label>
+					<div class="controls">
+						<input style="width: 30%" type="text" id="inputSub" name="inputSub" size="30"
+							class="input-small" placeholder="Enter Substance Name">
+					</div>
+				</div>
+				<div class="control-group">
+					<label class="control-label" for="inputMAH">MAH</label>
+					<div class="controls">
+						<input style="width: 30%" type="text" id="inputMAH" name="inputMAH" size="30"
+							class="input-small" placeholder="Enter MAH">
+					</div>
+				</div>
+				<div class="control-group">
+					<label class="control-label" for="inputEurDate">Eurd Date</label>
+					<div class="controls">
+						<input style="width: 30%" type="text" id="inputEurDate" name="inputEurDate" size="30"
+							class="input-small" placeholder="Enter Eurd Date">
+					</div>
+				</div>
+				<div class="control-group">
+					<label class="control-label" for="inputSubType">Submission
+						Type</label>
+					<div class="controls">
+						<input style="width: 30%" type="text" id="inputSubType" name="inputSubType" size="30"
+							class="input-small" placeholder="Enter Submission Type">
+					</div>
+				</div>
+				<div class="control-group">
+					<label class="control-label" for="inputSubType">Sequence
+						Number</label>
+					<div class="controls">
+						<input style="width: 30%" type="text" id="inputSeqNumber" name="inputSeqNumber"
+							size="30" class="input-small" placeholder="Enter Sequence Number">
+					</div>
+				</div>
+				<div style="float: center; margin-top: 25px">
+					<button class="btn btn-primary btn-large generateBtn" type="button">Generate
+						filename</button>
+					<div id=result></div>
+				</div>
+			</form>
+			<form id="naps" class="form-horizontal hero-unit">
+				<legend>Enter the following details about the submission:</legend>
+				<div class="control-group">
+					<label class="control-label" for="inputSender">Sender
+						RoutingId</label>
+					<div class="controls">
+						<input style="width: 30%" type="text" id="inputSender" name="inputSender" size="30"
+							class="input-small" placeholder="Sender RoutingId">
+					</div>
+				</div>
+				<div class="control-group">
+					<label class="control-label" for="receipient">Recipient</label>
+					<div class="controls">
+						<select style="width: 20%" id="receipient" name="receipient">
+							<option value="default"></option>
+							<option value="ESUBPROD">Production</option>
+							<option value="ESUBTEST">Test</option>
+						</select>
+					</div>
+				</div>
+				<div class="control-group">
+					<label class="control-label" for="inputEurd">Eurd Id</label>
+					<div class="controls">
+						<input style="width: 30%" type="text" id="inputEurd" name="inputEurd" size="30"
+							class="input-small" placeholder="Enter Eurd Id">
+					</div>
+				</div>
+				<div class="control-group">
+					<label class="control-label" for="inputSub">Substance Name</label>
+					<div class="controls">
+						<input style="width: 30%" type="text" id="inputSub" name="inputSub" size="30"
+							class="input-small" placeholder="Enter Substance Name">
+					</div>
+				</div>
+				<div class="control-group">
+					<label class="control-label" for="inputMAH">MAH</label>
+					<div class="controls">
+						<input style="width: 30%" type="text" id="inputMAH" name="inputMAH" size="30"
+							class="input-small" placeholder="Enter MAH">
+					</div>
+				</div>
+				<div class="control-group">
+					<label class="control-label" for="inputEurDate">Eurd Date</label>
+					<div class="controls">
+						<input style="width: 30%" type="text" id="inputEurDate" name="inputEurDate"  size="30"
+							class="input-small" placeholder="Enter Eurd Date">
+					</div>
+				</div>
+				<div class="control-group">
+					<label class="control-label" for="inputSubType">Submission
+						Type</label>
+					<div class="controls">
+						<input style="width: 30%" type="text" id="inputSubType" name="inputSubType" size="30"
+							class="input-small" placeholder="Enter Submission Type">
+					</div>
+				</div>
+				<div class="control-group">
+					<label class="control-label" for="inputSubType">Sequence
+						Number</label>
+					<div class="controls">
+						<input style="width: 30%" type="text" id="inputSeqNumber" name="inputSeqNumber"
+							size="30" class="input-small" placeholder="Enter Sequence Number">
+					</div>
+				</div>
+				<div style="float: center; margin-top: 25px">
+					<button class="btn btn-primary btn-medium generateBtn"
+						type="button">Generate filename</button>
+					<div id=result></div>
+				</div>
+			</form>
+		</div>
+		<div class="hero-unit" id="validate" style="display: none">
+			<div class="control-group info" style="width: 300">
+				<label class="control-label" for="inputValidate">Copy the
+					filename and click validate:</label>
+				<div class="control-group info" style="width: 255">
+					<input type="text" id="inputValidate" size="255" style="width: 80%">
+					<button id="validate" class="btn btn-primary btn-medium"
+						type="button">Validate</button>
+				</div>
+
+				<span style="display: none" class="help-inline">Something may
+					have gone wrong</span>
+			</div>
+		</div>
+
+	</div>
+	<!-- /container -->
+	<footer class="footer">
+
+	<div class="container">
+		<p>&copy; y-Dev Ltd. 2013</p>
+	</div>
+	</footer>
+	<!-- Le javascript
 ================================================== -->
-<!-- Placed at the end of the document so the pages load faster -->
-<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
-<script src="bootstrap/js/bootstrap.min.js"></script>
-<script type="text/javascript">
+	<!-- Placed at the end of the document so the pages load faster -->
+	<script
+		src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
+	<script src="bootstrap/js/bootstrap.min.js"></script>
+	<script type="text/javascript">
 	$(document).ready(function(){
 		//hide divs
 		$('#caps').hide();
 		$('#caps_naps').hide();
 		$('#naps').hide();
-		$('#generateBtn').hide();
-		$('.btn-info').hide();
 		
 		$('#composeBtn').on('click', function(){
 			$('#init').hide();
 			$('#validate').hide();
 			$('#create').show();
-			$('.btn-info').show();
 		})
 		
-		$('.btn-info').on('click', function(){
+		$('#bckBtn').on('click', function(){
 			$('#validate').hide();
 			$('#create').hide();
 			$('#init').show();
 			//clear all input
 			$(':input').val("");
-			$(this).hide();
 			
 		})
 		
@@ -148,7 +348,6 @@
 			$('#init').hide();
 			$('#create').hide();
 			$('#validate').show();
-			$('.btn-info').show();
 		})
 		
 		$('#subType').change(function(){
@@ -157,29 +356,64 @@
 				$('#caps').show();
 				$('#caps_naps').hide();
 				$('#naps').hide();
-				$('#generateBtn').show();
 				break;
 			case "nap":
 				$('#caps').hide();
 				$('#caps_naps').hide();
 				$('#naps').show();
-				$('#generateBtn').show();
 				break;
 			case "cap_nap":
 				$('#caps').hide();
 				$('#caps_naps').show();
 				$('#naps').hide();
-				$('#generateBtn').show();
 				break;
 			 default:
 				$('#caps').hide();
 				$('#caps_naps').hide();
 				$('#naps').hide();
-				$('#generateBtn').hide();
 				break;
 			}
 		});
+		
+		jQuery.fn.serializeJSON=function() {
+			  var json = {};
+			  jQuery.map(jQuery(this).serializeArray(), function(n, i) {
+			    var _ = n.name.indexOf('[');
+			    if (_ > -1) {
+			      var o = json;
+			      _name = n.name.replace(/\]/gi, '').split('[');
+			      for (var i=0, len=_name.length; i<len; i++) {
+			        if (i == len-1) {
+			          if (o[_name[i]]) {
+			            if (typeof o[_name[i]] == 'string') {
+			              o[_name[i]] = [o[_name[i]]];
+			            }
+			            o[_name[i]].push(n.value);
+			          }
+			          else o[_name[i]] = n.value || '';
+			        }
+			        else o = o[_name[i]] = o[_name[i]] || {};
+			      }
+			    }
+			    else {
+			      if (json[n.name] !== undefined) {
+			        if (!json[n.name].push) {
+			          json[n.name] = [json[n.name]];
+			        }
+			        json[n.name].push(n.value || '');
+			      }
+			      else json[n.name] = n.value || '';      
+			    }
+			  });
+			  return json;
+			};
+			
+		$(".generateBtn").on("click", function(){
+			alert(JSON.stringify($(this).closest("form").serializeJSON()));
+		});
 	});
+
+
 </script>
 </body>
 </html>
