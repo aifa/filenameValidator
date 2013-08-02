@@ -409,10 +409,11 @@ body {
 			};
 			
 		$(".generateBtn").on("click", function(){
+			$('#result').find('ul').remove();
 			var form = $(this).closest("form");
 			var data = JSON.stringify(form.serializeJSON());
 			$.post('compose/'+form.attr('id'), data, function(result){
-				alert(result);
+				$('#result').append(result);
 			}).fail(function() { alert("error"); });
 		});
 	});
