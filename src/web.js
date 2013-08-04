@@ -23,11 +23,39 @@ app.post('/compose/:type', function(req, res) {
 	 
 	 req.on('end', function(buffer){
 		 var submissionData = JSON.parse(data);
-		 res.writeHead(200);
-		 res.write(helperModule.composeName(type,submissionData));
-		 res.end();
+		 if (submissionData!=null){
+			 res.writeHead(200);
+			 res.write(helperModule.composeName(type,submissionData));
+			 res.end();
+		 }else{
+			 res.writeHead(400);
+			 res.end();
+		 }
+		 
 	 });
  });
+
+app.post('/validate', function(req, res) {
+	 var type = req.params.type;
+	 var data='' ;
+	 req.on('data', function(buffer){
+		 data += buffer;
+	 });
+	 
+	 req.on('end', function(buffer){
+		 var submissionData = JSON.parse(data);
+		 console.log(submissionData);
+		 if (submissionData!=null){
+			 res.writeHead(200);
+			 res.write(helperModule.validateFileName(submissionData.inputVal));
+			 res.end();
+		 }else{
+			 res.writeHead(400);
+			 res.end();
+		 }
+	 });
+});
+
 
 var port = process.env.PORT || 5000;
 

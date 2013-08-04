@@ -13,135 +13,150 @@ var BASIC_FORMAT_UPPER_LOWER_CASE_THIRTY_CHARS = /^[A-Za-z0-9-]{1,30}$/;
 var PSUR_TYPE = /^psusa$/;
 
 var SEQUENCE_NUMBER_REG_EXP = /^[0-9][0-9]{3}$/;
-var SIX_DIGIT_DATE = /^\\d{6}$/;
+var SIX_DIGIT_DATE = /^\d{6}$/;
 var EURDID_REG_EXP = /^[0-9]{8}$/;
 
+function valObject(regexp, fieldName) {
+	this.regexp = regexp;
+	this.fieldName = fieldName;
+}
+
 var capsFormat = [
-                BASIC_FORMAT_UPPER_CASE_HUNDRED_CHARS,
-                BASIC_FORMAT_UPPER_CASE_HUNDRED_CHARS,
-                BASIC_FORMAT_UPPER_CASE, 
-                BASIC_FORMAT_UPPER_LOWER_CASE_THIRTY_CHARS,
-                BASIC_FORMAT_UPPER_LOWER_CASE,
-                SEQUENCE_NUMBER_REG_EXP
-              ];
+		new valObject(BASIC_FORMAT_UPPER_CASE_HUNDRED_CHARS, "Sender Id"),
+		new valObject(BASIC_FORMAT_UPPER_CASE_HUNDRED_CHARS, "Receiver Id"),
+		new valObject(BASIC_FORMAT_UPPER_CASE, "Product Number"),
+		new valObject(BASIC_FORMAT_UPPER_LOWER_CASE_THIRTY_CHARS,
+				"Product Name"),
+		new valObject(BASIC_FORMAT_UPPER_LOWER_CASE, "Submission Type"),
+		new valObject(SEQUENCE_NUMBER_REG_EXP, "Sequence Number") ];
 
 var napsFormat = [
-                  BASIC_FORMAT_UPPER_CASE_HUNDRED_CHARS,
-                  BASIC_FORMAT_UPPER_CASE_HUNDRED_CHARS,
-                  EURDID_REG_EXP,
-                  BASIC_FORMAT_UPPER_LOWER_CASE_THIRTY_CHARS,
-                  BASIC_FORMAT_UPPER_LOWER_CASE,
-                  SIX_DIGIT_DATE,
-                  PSUR_TYPE,
-                  SEQUENCE_NUMBER_REG_EXP
-             ];
+		new valObject(BASIC_FORMAT_UPPER_CASE_HUNDRED_CHARS, "Sender Id"),
+		new valObject(BASIC_FORMAT_UPPER_CASE_HUNDRED_CHARS, "Receiver Id"),
+		new valObject(EURDID_REG_EXP, "Eurd number"),
+		new valObject(BASIC_FORMAT_UPPER_LOWER_CASE_THIRTY_CHARS,
+				"Substance name"),
+		new valObject(BASIC_FORMAT_UPPER_LOWER_CASE, "MAH name"),
+		new valObject(SIX_DIGIT_DATE, "Eurd Date"),
+		new valObject(PSUR_TYPE, "Submission Type"),
+		new valObject(SEQUENCE_NUMBER_REG_EXP, "Sequence Number") ];
 
 var capsnapsFormat = [
-                  BASIC_FORMAT_UPPER_CASE_HUNDRED_CHARS,
-                  BASIC_FORMAT_UPPER_CASE_HUNDRED_CHARS,
-                  BASIC_FORMAT_UPPER_CASE,
-                  BASIC_FORMAT_UPPER_LOWER_CASE_THIRTY_CHARS,
-                  EURDID_REG_EXP,
-                  BASIC_FORMAT_UPPER_LOWER_CASE_THIRTY_CHARS,
-                  BASIC_FORMAT_UPPER_LOWER_CASE,
-                  SIX_DIGIT_DATE,
-                  PSUR_TYPE,
-                  SEQUENCE_NUMBER_REG_EXP
-             ];
+		new valObject(BASIC_FORMAT_UPPER_CASE_HUNDRED_CHARS, "Sender Id"),
+		new valObject(BASIC_FORMAT_UPPER_CASE_HUNDRED_CHARS, "Receiver Id"),
+		new valObject(BASIC_FORMAT_UPPER_CASE, "Product Number"),
+		new valObject(BASIC_FORMAT_UPPER_LOWER_CASE_THIRTY_CHARS,
+				"Product Name"),
+		new valObject(EURDID_REG_EXP, "Eurd number"),
+		new valObject(BASIC_FORMAT_UPPER_LOWER_CASE_THIRTY_CHARS,
+				"Substance name"),
+		new valObject(BASIC_FORMAT_UPPER_LOWER_CASE, "MAH name"),
+		new valObject(SIX_DIGIT_DATE, "Eurd Date"),
+		new valObject(PSUR_TYPE, "Submission Type"),
+		new valObject(SEQUENCE_NUMBER_REG_EXP, "Sequence Number") ];
 
-var composeName= function(type,data){
-	var filename="";
-	switch(type){
-		case "caps":
-			filename = data.inputSender+'_'+data.receipient+'_'+data.inputPNumber+'_'+data.inputPName+'_'+data.inputSubType+'_'+data.inputSeqnumber;
-			break;
-		case "caps_naps":
-			filename = data.inputSender+'_'+data.receipient+'_'+data.inputPNumber+'_'+data.inputPName+'_'+data.inputEurd+'_'+data.inputSub+
-			'_'+data.inputMAH+'_'+data.inputEurDate+'_'+data.inputSubType+'_'+data.inputSeqNumber;
-			break;
-		case "naps":
-			 filename = data.inputSender+'_'+data.receipient+'_'+data.inputEurd+'_'+data.inputSub+
-			'_'+data.inputMAH+'_'+data.inputEurDate+'_'+data.inputSubType+'_'+data.inputSeqNumber;
-			 break;
-		 default:
-			 return 'Unrecognised submission type';
-		  break;
+var composeName = function(type, data) {
+	var filename = "";
+	switch (type) {
+	case "caps":
+		filename = data.inputSender + '_' + data.receipient + '_'
+				+ data.inputPNumber + '_' + data.inputPName + '_'
+				+ data.inputSubType + '_' + data.inputSeqnumber;
+		break;
+	case "caps_naps":
+		filename = data.inputSender + '_' + data.receipient + '_'
+				+ data.inputPNumber + '_' + data.inputPName + '_'
+				+ data.inputEurd + '_' + data.inputSub + '_' + data.inputMAH
+				+ '_' + data.inputEurDate + '_' + data.inputSubType + '_'
+				+ data.inputSeqNumber;
+		break;
+	case "naps":
+		filename = data.inputSender + '_' + data.receipient + '_'
+				+ data.inputEurd + '_' + data.inputSub + '_' + data.inputMAH
+				+ '_' + data.inputEurDate + '_' + data.inputSubType + '_'
+				+ data.inputSeqNumber;
+		break;
+	default:
+		return 'Unrecognised submission type';
+		break;
 	}
 	filename += EXTENSION;
-	
+
 	return validateFileName(filename);
 };
 
 /**
- * Validate filename and return an error message or 
- * the filename if it is valid.
+ * Validate filename and return an error message or the filename if it is valid.
  */
-var validateFileName = function(filename){
-	//check null or empty
-	if (filename==null || filename==''){
-		return 'No filename given';
+var validateFileName = function(filename) {
+	var result = "<ul>";
+	// check null or empty
+	if (filename == null || filename == '') {
+		result += '<li>No filename given' + '</ul>';
+		return result;
 	}
-	//check max length
-	if (filename.length>255){
-		return filename + ' exceeds 255 characters';
+	// check max length
+	if (filename.length > 255) {
+		result += '<li>' + filename + ' exceeds 255 characters' + '</ul>'; 
+		return result;
 	}
-	
-	if (WHITESPACE.test(filename)){
-		return filename+" should not contain any whitespace";
-	}
-	
-	//check for whitespace
-	if (endsWith(filename, EXTENSION) == false){
-		return filename+": Should end in "+ EXTENSION;
-	}
-	
-	var filenameParts = filename.replace(EXTENSION, "").split("_");
-	
 
-	var regExpArray=null;
-	
-	switch (filenameParts.length){
-		case NUMBER_OF_FILENAME_PARTS_IN_CAPS:
-			regExpArray=capsFormat;
-			break;
-		case NUMBER_OF_FILENAME_PARTS_IN_NAPS:
-			regExpArray=napsFormat;
-			break;
-		case NUMBER_OF_FILENAME_PARTS_IN_CAPSNAPS:
-			regExpArray=capsnapsFormat;
-			break;
-		default:
-			return 'Wrong number of filename parts...Unrecognised submission type';
+	if (WHITESPACE.test(filename)) {
+		result += '<li>' + filename + " should not contain any whitespace" + '</ul>';
+		return result;
 	}
-	
-	if  (regExpArray==null){
-		return "Oops...Internal System error";
+
+	// check for whitespace
+	if (endsWith(filename, EXTENSION) == false) {
+		result += '<li>'+ filename + ": Should end in " + EXTENSION + '</ul>';
+		return result;
 	}
-	
-	var foundError=false;
-	var result="<ul>";
-	
-	for (var i=0;i<filenameParts.length;i++){
-		if (!regExpArray[i].test(filenameParts[i])){
-			result += "<li>"+filenameParts[i]+" has an invalid format</li>";
-			if (foundError==false){
-				foundError=true;
+
+	var filenameParts = filename.replace(EXTENSION, "").split("_");
+	var regExpArray = null;
+
+	switch (filenameParts.length) {
+	case NUMBER_OF_FILENAME_PARTS_IN_CAPS:
+		regExpArray = capsFormat;
+		break;
+	case NUMBER_OF_FILENAME_PARTS_IN_NAPS:
+		regExpArray = napsFormat;
+		break;
+	case NUMBER_OF_FILENAME_PARTS_IN_CAPSNAPS:
+		regExpArray = capsnapsFormat;
+		break;
+	default:
+		result += '<li>Wrong number of filename parts...Unrecognised submission type </ul>';
+		return  result;
+	}
+
+	if (regExpArray == null) {
+		result += "<li>Oops...Internal System error </ul>";
+		return result;
+	}
+
+	var foundError = false;
+
+	for ( var i = 0; i < filenameParts.length; i++) {
+		if (!regExpArray[i].regexp.test(filenameParts[i])) {
+			result += "<li>" + regExpArray[i].fieldName + " has an invalid format</li>";
+			if (foundError == false) {
+				foundError = true;
 			}
 		}
 	}
-	
-	if (foundError == false){
-		result += "<li>"+filename+"</li>" ;
+
+	if (foundError == false) {
+		result += "<li>" + filename + "</li>";
 	}
-	
-	result+="</ul>";
+
+	result += "</ul>";
 	return result;
 };
 
 function endsWith(str, suffix) {
-    return str.indexOf(suffix, str.length - suffix.length) !== -1;
+	return str.indexOf(suffix, str.length - suffix.length) !== -1;
 }
-
 
 exports.composeName = composeName;
 exports.validateFileName = validateFileName;

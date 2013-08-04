@@ -16,6 +16,10 @@ body {
 .generateBtn {
 	
 }
+
+.result {
+
+}
 </style>
 <link href="../bootstrap/css/bootstrap-responsive.css" rel="stylesheet">
 
@@ -48,8 +52,13 @@ body {
 		<!-- Main hero unit for a primary marketing message or call to action -->
 		<div class="hero-unit" id="init" style="align: center">
 			<div class="row">
+				<div>
+					<p class='lead'>Tools for creating and validating file names for centralized procedure and periodic assessment electronic submissions for the European Medicines Agency.</p>
+				</div>
+			</div>
+			<div class="row">
 				<div class="span3 ">
-					<p>What do you want to do next:</p>
+					<p></p>
 				</div>
 			</div>
 			<div class="row">
@@ -68,8 +77,7 @@ body {
 		<div id="create" style="display: none; width: 70%; float: center">
 
 			<div class="control-group">
-				<label class="control-label" for="subType">Choose a type of
-					submission:</label>
+				<label class="control-label" for="subType">Select submission type</label>
 				<div class="controls">
 					<select id="subType">
 						<option></option>
@@ -87,17 +95,19 @@ body {
 						Routing Id:</label>
 					<div class="controls">
 						<input style="width: 30%" type="text" id="inputSender" name="inputSender" size="30"
-							class="input-small" placeholder="Enter Id" />
+							class="input-small" data-required="true" placeholder="Enter Id" />
+							 <span class="help-inline">Field is Mandatory</span>
 					</div>
 				</div>
 				<div class="control-group">
 					<label class="control-label" for="receipient">Recipient:</label>
 					<div class="controls">
-						<select style="width: 20%" class="input-small" id="receipient" name="receipient">
+						<select style="width: 25%" class="input-small" data-required="true" id="receipient" name="receipient">
 							<option value="default"></option>
 							<option value="ESUBPROD">Production</option>
 							<option value="ESUBTEST">Test</option>
 						</select>
+						<span class="help-inline">Field is Mandatory</span>
 					</div>
 				</div>
 				<div class="control-group">
@@ -105,14 +115,16 @@ body {
 						Number:</label>
 					<div class="controls">
 						<input style="width: 30%" type="text" id="inputPNumber" name="inputPNumber" size="30"
-							class="input-small" placeholder="Enter Product Number">
+							class="input-small" data-required="true"  placeholder="Enter Product Number">
+							<span class="help-inline">Field is Mandatory</span>
 					</div>
 				</div>
 				<div class="control-group">
 					<label class="control-label" for="inputPName">Product Name</label>
 					<div class="controls">
 						<input style="width: 30%" type="text" id="inputPName" name="inputPName" size="30"
-							class="input-small" placeholder="Enter Product Name">
+							class="input-small" data-required="true" placeholder="Enter Product Name">
+							<span class="help-inline">Field is Mandatory</span>
 					</div>
 				</div>
 				<div class="control-group">
@@ -120,7 +132,8 @@ body {
 						Type</label>
 					<div class="controls">
 						<input style="width: 30%" type="text" id="inputSubType" name="inputSubType" size="30"
-							class="input-small" placeholder="Enter Submission Type">
+							class="input-small" data-required="true" placeholder="Enter Submission Type">
+							<span class="help-inline">Field is Mandatory</span>
 					</div>
 				</div>
 				<div class="control-group">
@@ -128,13 +141,15 @@ body {
 						Number</label>
 					<div class="controls">
 						<input style="width: 30%" type="text" id="inputSeqnumber"  name="inputSeqnumber"
-							size="30" class="input-small" placeholder="Enter Sequence Number">
+							size="30" class="input-small" data-required="true"  placeholder="Enter Sequence Number">
+						<span class="help-inline">Field is Mandatory</span>
 					</div>
 				</div>
 				<div style="float: center; margin-top: 25px">
 					<button class="btn btn-primary btn-large generateBtn" type="button">Generate
 						filename</button>
-					<div id=result></div>
+						
+					<div class="result"></div>
 				</div>
 			</form>
 			<form id="caps_naps" class="form-horizontal hero-unit">
@@ -144,17 +159,19 @@ body {
 						RoutingId</label>
 					<div class="controls">
 						<input style="width: 30%" type="text" id="inputSender" name="inputSender" size="30"
-							placeholder="Enter Sender RoutingId">
+							data-required="true"  placeholder="Enter Sender RoutingId">
+							<span class="help-inline">Field is Mandatory</span>
 					</div>
 				</div>
 				<div class="control-group">
 					<label class="control-label" for="receipient">Recipient</label>
 					<div class="controls">
-						<select style="width: 20%" id="receipient" name="receipient">
+						<select style="width: 25%" id="receipient" name="receipient" data-required="true" >
 							<option value="default"></option>
 							<option value="ESUBPROD">Production</option>
 							<option value="ESUBTEST">Test</option>
 						</select>
+						<span class="help-inline">Field is Mandatory</span>
 					</div>
 				</div>
 				<div class="control-group">
@@ -162,42 +179,48 @@ body {
 						Number</label>
 					<div class="controls">
 						<input style="width: 30%" type="text" id="inputPnumber" name="inputPNumber" size="30"
-							class="input-small" placeholder="Enter Product Number">
+							class="input-small" data-required="true"  placeholder="Enter Product Number">
+							<span class="help-inline">Field is Mandatory</span>
 					</div>
 				</div>
 				<div class="control-group">
 					<label class="control-label" for="inputPName">Product Name</label>
 					<div class="controls">
 						<input style="width: 30%" type="text" id="inputPName" name="inputPName" size="30"
-							class="input-small" placeholder="Enter Product Name">
+							class="input-small" data-required="true"  placeholder="Enter Product Name">
+							<span class="help-inline">Field is Mandatory</span>
 					</div>
 				</div>
 				<div class="control-group">
 					<label class="control-label" for="inputEurd">Eurd Id</label>
 					<div class="controls">
 						<input style="width: 30%" type="text" id="inputEurd" name="inputEurd" size="30"
-							class="input-small" placeholder="Enter Eurd Id">
+							class="input-small" data-required="true"  placeholder="Enter Eurd Id">
+							<span class="help-inline">Field is Mandatory</span>
 					</div>
 				</div>
 				<div class="control-group">
 					<label class="control-label" for="inputSub">Substance Name</label>
 					<div class="controls">
 						<input style="width: 30%" type="text" id="inputSub" name="inputSub" size="30"
-							class="input-small" placeholder="Enter Substance Name">
+							class="input-small" data-required="true" placeholder="Enter Substance Name">
+							<span class="help-inline">Field is Mandatory</span>
 					</div>
 				</div>
 				<div class="control-group">
 					<label class="control-label" for="inputMAH">MAH</label>
 					<div class="controls">
 						<input style="width: 30%" type="text" id="inputMAH" name="inputMAH" size="30"
-							class="input-small" placeholder="Enter MAH">
+							class="input-small" data-required="true" placeholder="Enter MAH">
+							<span class="help-inline">Field is Mandatory</span>
 					</div>
 				</div>
 				<div class="control-group">
 					<label class="control-label" for="inputEurDate">Eurd Date</label>
 					<div class="controls">
 						<input style="width: 30%" type="text" id="inputEurDate" name="inputEurDate" size="30"
-							class="input-small" placeholder="Enter Eurd Date">
+							class="input-small" data-required="true" placeholder="Enter Eurd Date">
+							<span class="help-inline">Field is Mandatory</span>
 					</div>
 				</div>
 				<div class="control-group">
@@ -205,7 +228,8 @@ body {
 						Type</label>
 					<div class="controls">
 						<input style="width: 30%" type="text" id="inputSubType" name="inputSubType" size="30"
-							class="input-small" placeholder="Enter Submission Type">
+							class="input-small" data-required="true" placeholder="Enter Submission Type">
+							<span class="help-inline">Field is Mandatory</span>
 					</div>
 				</div>
 				<div class="control-group">
@@ -213,13 +237,14 @@ body {
 						Number</label>
 					<div class="controls">
 						<input style="width: 30%" type="text" id="inputSeqNumber" name="inputSeqNumber"
-							size="30" class="input-small" placeholder="Enter Sequence Number">
+							size="30" class="input-small" data-required="true" placeholder="Enter Sequence Number">
+							<span class="help-inline">Field is Mandatory</span>
 					</div>
 				</div>
 				<div style="float: center; margin-top: 25px">
 					<button class="btn btn-primary btn-large generateBtn" type="button">Generate
 						filename</button>
-					<div id=result></div>
+					<div class="result"></div>
 				</div>
 			</form>
 			<form id="naps" class="form-horizontal hero-unit">
@@ -229,13 +254,14 @@ body {
 						RoutingId</label>
 					<div class="controls">
 						<input style="width: 30%" type="text" id="inputSender" name="inputSender" size="30"
-							class="input-small" placeholder="Sender RoutingId">
+							class="input-small" data-required="true" placeholder="Sender RoutingId">
+							<span class="help-inline">Field is Mandatory</span>
 					</div>
 				</div>
 				<div class="control-group">
 					<label class="control-label" for="receipient">Recipient</label>
 					<div class="controls">
-						<select style="width: 20%" id="receipient" name="receipient">
+						<select style="width: 25%" id="receipient" name="receipient" data-required="true" >
 							<option value="default"></option>
 							<option value="ESUBPROD">Production</option>
 							<option value="ESUBTEST">Test</option>
@@ -246,28 +272,32 @@ body {
 					<label class="control-label" for="inputEurd">Eurd Id</label>
 					<div class="controls">
 						<input style="width: 30%" type="text" id="inputEurd" name="inputEurd" size="30"
-							class="input-small" placeholder="Enter Eurd Id">
+							class="input-small" data-required="true" placeholder="Enter Eurd Id">
+							<span class="help-inline">Field is Mandatory</span>
 					</div>
 				</div>
 				<div class="control-group">
 					<label class="control-label" for="inputSub">Substance Name</label>
 					<div class="controls">
 						<input style="width: 30%" type="text" id="inputSub" name="inputSub" size="30"
-							class="input-small" placeholder="Enter Substance Name">
+							class="input-small" data-required="true" placeholder="Enter Substance Name">
+							<span class="help-inline">Field is Mandatory</span>
 					</div>
 				</div>
 				<div class="control-group">
 					<label class="control-label" for="inputMAH">MAH</label>
 					<div class="controls">
 						<input style="width: 30%" type="text" id="inputMAH" name="inputMAH" size="30"
-							class="input-small" placeholder="Enter MAH">
+							class="input-small" data-required="true"  placeholder="Enter MAH">
+							<span class="help-inline">Field is Mandatory</span>
 					</div>
 				</div>
 				<div class="control-group">
 					<label class="control-label" for="inputEurDate">Eurd Date</label>
 					<div class="controls">
 						<input style="width: 30%" type="text" id="inputEurDate" name="inputEurDate"  size="30"
-							class="input-small" placeholder="Enter Eurd Date">
+							class="input-small" data-required="true"  placeholder="Enter Eurd Date">
+							<span class="help-inline">Field is Mandatory</span>
 					</div>
 				</div>
 				<div class="control-group">
@@ -275,7 +305,8 @@ body {
 						Type</label>
 					<div class="controls">
 						<input style="width: 30%" type="text" id="inputSubType" name="inputSubType" size="30"
-							class="input-small" placeholder="Enter Submission Type">
+							class="input-small" data-required="true" placeholder="Enter Submission Type">
+							<span class="help-inline">Field is Mandatory</span>
 					</div>
 				</div>
 				<div class="control-group">
@@ -283,38 +314,36 @@ body {
 						Number</label>
 					<div class="controls">
 						<input style="width: 30%" type="text" id="inputSeqNumber" name="inputSeqNumber"
-							size="30" class="input-small" placeholder="Enter Sequence Number">
+							size="30" class="input-small" data-required="true" placeholder="Enter Sequence Number">
+							<span class="help-inline">Field is Mandatory</span>
 					</div>
 				</div>
 				<div style="float: center; margin-top: 25px">
 					<button class="btn btn-primary btn-medium generateBtn"
 						type="button">Generate filename</button>
-					<div id=result></div>
 				</div>
 			</form>
+			<div class="result"></div>
 		</div>
 		<div class="hero-unit" id="validate" style="display: none">
-			<div class="control-group info" style="width: 300">
-				<label class="control-label" for="inputValidate">Copy the
-					filename and click validate:</label>
-				<div class="control-group info" style="width: 255">
-					<input type="text" id="inputValidate" size="255" style="width: 80%">
-					<button id="validate" class="btn btn-primary btn-medium"
-						type="button">Validate</button>
+			<form id="validateForm" class="form-vertical hero-unit">
+				<div class="control-group">
+					<label class="control-label" for="inputVal">Enter the filename that you would like to validate:</label>
+					<div class="controls">
+						<input type="text" style="width:65%" data-required="true"  id="inputVal" name="inputVal" placeholder="Enter eSubmissions file name">
+						<span class="help-inline">Field is Mandatory</span>
+					</div>
+					<button id="btnValidate" class="btn btn-primary btn-medium" type="button">Validate</button>
 				</div>
-
-				<span style="display: none" class="help-inline">Something may
-					have gone wrong</span>
-			</div>
+			</form>
+			<div class="result"></div>
 		</div>
-
 	</div>
 	<!-- /container -->
 	<footer class="footer">
-
-	<div class="container">
-		<p>&copy; y-Dev Ltd. 2013</p>
-	</div>
+		<div class="container">
+			<p>&copy; y-Dev Ltd. 2013</p>
+		</div>
 	</footer>
 	<!-- Le javascript
 ================================================== -->
@@ -322,103 +351,6 @@ body {
 	<script
 		src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
 	<script src="bootstrap/js/bootstrap.min.js"></script>
-	<script type="text/javascript">
-	$(document).ready(function(){
-		//hide divs
-		$('#caps').hide();
-		$('#caps_naps').hide();
-		$('#naps').hide();
-		
-		$('#composeBtn').on('click', function(){
-			$('#init').hide();
-			$('#validate').hide();
-			$('#create').show();
-		})
-		
-		$('#bckBtn').on('click', function(){
-			$('#validate').hide();
-			$('#create').hide();
-			$('#init').show();
-			//clear all input
-			$(':input').val("");
-			
-		})
-		
-		$('#validateBtn').on('click', function(){
-			$('#init').hide();
-			$('#create').hide();
-			$('#validate').show();
-		})
-		
-		$('#subType').change(function(){
-			switch($(this).val()){
-			case "cap":
-				$('#caps').show();
-				$('#caps_naps').hide();
-				$('#naps').hide();
-				break;
-			case "nap":
-				$('#caps').hide();
-				$('#caps_naps').hide();
-				$('#naps').show();
-				break;
-			case "cap_nap":
-				$('#caps').hide();
-				$('#caps_naps').show();
-				$('#naps').hide();
-				break;
-			 default:
-				$('#caps').hide();
-				$('#caps_naps').hide();
-				$('#naps').hide();
-				break;
-			}
-		});
-		
-		jQuery.fn.serializeJSON=function() {
-			  var json = {};
-			  jQuery.map(jQuery(this).serializeArray(), function(n, i) {
-			    var _ = n.name.indexOf('[');
-			    if (_ > -1) {
-			      var o = json;
-			      _name = n.name.replace(/\]/gi, '').split('[');
-			      for (var i=0, len=_name.length; i<len; i++) {
-			        if (i == len-1) {
-			          if (o[_name[i]]) {
-			            if (typeof o[_name[i]] == 'string') {
-			              o[_name[i]] = [o[_name[i]]];
-			            }
-			            o[_name[i]].push(n.value);
-			          }
-			          else o[_name[i]] = n.value || '';
-			        }
-			        else o = o[_name[i]] = o[_name[i]] || {};
-			      }
-			    }
-			    else {
-			      if (json[n.name] !== undefined) {
-			        if (!json[n.name].push) {
-			          json[n.name] = [json[n.name]];
-			        }
-			        json[n.name].push(n.value || '');
-			      }
-			      else json[n.name] = n.value || '';      
-			    }
-			  });
-			  return json;
-			};
-			
-		$(".generateBtn").on("click", function(){
-			$('#result').find('ul').remove();
-			var form = $(this).closest("form");
-			var data = JSON.stringify(form.serializeJSON());
-			$.post('compose/'+form.attr('id'), data, function(result){
-				$('#result').append(result);
-			}).fail(function() { alert("error"); });
-		});
-	});
-
-
-</script>
+	<script src="js/client.js"></script>
 </body>
 </html>
