@@ -8,7 +8,7 @@
 			$('#init').hide();
 			$('#validate').hide();
 			$('#create').show();
-			$('.result').find('ul').remove();
+			$('.result').find('ol').remove();
 			$('#subType').val('');
 			$('.control-group').removeClass("error");
 			$('.help-inline').hide();
@@ -93,30 +93,33 @@
 			};
 			
 		$(".generateBtn").on("click", function(){
-			$('.result').find('ul').remove();
 			var form = $(this).closest("form");
-			
+			form.find('.result').find('ol').remove();
 			if (clientVal(form)==false)
 				return;
 			
 			var data = JSON.stringify(form.serializeJSON());
 			$.post('compose/'+form.attr('id'), data, function(result){
-				$('.result').append(result);
+				form.find('.result').append(result);
+				var filename= form.find('.result').find('.text-success').text();
+				form.find('.result').find('.text-success').text('Please use the following name:'+filename);
 			}).fail(function() { alert("error"); });
 		});
 		
 		$("#btnValidate").on("click", function(){
-			$('.result').find('ul').remove();
+			
 			var form = $(this).closest("form");
+			form.find('.result').find('ol').remove();
 			var data = JSON.stringify(form.serializeJSON());
 			
 			if (clientVal(form)==false)
 				return;
 			
 			$.post('validate', data, function(result){
-				$('.result').append(result);
+				form.find('.result').append(result);
+				form.find('.result').find('.text-success').text('The filename is valid.')
 			}).fail(function() { 
-				alert("error"); 
+				alert("There has been an error. Please reload and retry"); 
 			});
 		});
 	});

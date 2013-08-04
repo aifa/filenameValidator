@@ -15,6 +15,7 @@ var PSUR_TYPE = /^psusa$/;
 var SEQUENCE_NUMBER_REG_EXP = /^[0-9][0-9]{3}$/;
 var SIX_DIGIT_DATE = /^\d{6}$/;
 var EURDID_REG_EXP = /^[0-9]{8}$/;
+var PRODUCT_NUMBER = /^[A-Z]*[0-9]{6}$/;
 
 function valObject(regexp, fieldName) {
 	this.regexp = regexp;
@@ -24,7 +25,7 @@ function valObject(regexp, fieldName) {
 var capsFormat = [
 		new valObject(BASIC_FORMAT_UPPER_CASE_HUNDRED_CHARS, "Sender Id"),
 		new valObject(BASIC_FORMAT_UPPER_CASE_HUNDRED_CHARS, "Receiver Id"),
-		new valObject(BASIC_FORMAT_UPPER_CASE, "Product Number"),
+		new valObject(PRODUCT_NUMBER, "Product Number"),
 		new valObject(BASIC_FORMAT_UPPER_LOWER_CASE_THIRTY_CHARS,
 				"Product Name"),
 		new valObject(BASIC_FORMAT_UPPER_LOWER_CASE, "Submission Type"),
@@ -44,7 +45,7 @@ var napsFormat = [
 var capsnapsFormat = [
 		new valObject(BASIC_FORMAT_UPPER_CASE_HUNDRED_CHARS, "Sender Id"),
 		new valObject(BASIC_FORMAT_UPPER_CASE_HUNDRED_CHARS, "Receiver Id"),
-		new valObject(BASIC_FORMAT_UPPER_CASE, "Product Number"),
+		new valObject(PRODUCT_NUMBER, "Product Number"),
 		new valObject(BASIC_FORMAT_UPPER_LOWER_CASE_THIRTY_CHARS,
 				"Product Name"),
 		new valObject(EURDID_REG_EXP, "Eurd number"),
@@ -89,26 +90,26 @@ var composeName = function(type, data) {
  * Validate filename and return an error message or the filename if it is valid.
  */
 var validateFileName = function(filename) {
-	var result = "<ul>";
+	var result = "<ol>";
 	// check null or empty
 	if (filename == null || filename == '') {
-		result += '<li>No filename given' + '</ul>';
+		result += '<li class=\'text-error\'>No filename given' + '</ul>';
 		return result;
 	}
 	// check max length
 	if (filename.length > 255) {
-		result += '<li>' + filename + ' exceeds 255 characters' + '</ul>'; 
+		result += '<li class=\'text-error\'>' + filename + ' exceeds 255 characters' + '</ul>'; 
 		return result;
 	}
 
 	if (WHITESPACE.test(filename)) {
-		result += '<li>' + filename + " should not contain any whitespace" + '</ul>';
+		result += '<li class=\'text-error\'>' + filename + " should not contain any whitespace" + '</ul>';
 		return result;
 	}
 
 	// check for whitespace
 	if (endsWith(filename, EXTENSION) == false) {
-		result += '<li>'+ filename + ": Should end in " + EXTENSION + '</ul>';
+		result += '<li class=\'text-error\'>'+ filename + ": Should end in " + EXTENSION + '</ul>';
 		return result;
 	}
 
@@ -126,12 +127,12 @@ var validateFileName = function(filename) {
 		regExpArray = capsnapsFormat;
 		break;
 	default:
-		result += '<li>Wrong number of filename parts...Unrecognised submission type </ul>';
+		result += '<li class=\'text-error\'>Wrong number of filename parts...Unrecognised submission type </ul>';
 		return  result;
 	}
 
 	if (regExpArray == null) {
-		result += "<li>Oops...Internal System error </ul>";
+		result += "<li class='text-error'>Oops...Internal System error </ul>";
 		return result;
 	}
 
@@ -139,7 +140,7 @@ var validateFileName = function(filename) {
 
 	for ( var i = 0; i < filenameParts.length; i++) {
 		if (!regExpArray[i].regexp.test(filenameParts[i])) {
-			result += "<li>" + regExpArray[i].fieldName + " has an invalid format</li>";
+			result += "<li class='text-error'>" + regExpArray[i].fieldName + " has an invalid format</li>";
 			if (foundError == false) {
 				foundError = true;
 			}
@@ -147,10 +148,10 @@ var validateFileName = function(filename) {
 	}
 
 	if (foundError == false) {
-		result += "<li>" + filename + "</li>";
+		result += "<li class='text-success'>" + filename + "</li>";
 	}
 
-	result += "</ul>";
+	result += "</ol>";
 	return result;
 };
 
