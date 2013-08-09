@@ -9,7 +9,7 @@
 			$('#validate').hide();
 			$('#create').show();
 			$('.result').find('ol').remove();
-			$('#subType').val('');
+			$('#subType').val('cap').change();
 			$('.control-group').removeClass("error");
 			$('.help-inline').hide();
 		})
