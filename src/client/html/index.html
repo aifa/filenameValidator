@@ -15,14 +15,24 @@
 		padding-top: 60px;
 		padding-bottom: 40px;
 	}
-	
+	.composeBtn{
+	}
 	.generateBtn {
 		
+	}
+	.validateBtn{
 	}
 	
 	.result {
 		
 	}
+	
+	a.gen{
+      color: white;
+      &:hover {
+         color: #white;
+       }
+     }
 </style>
 <link href="../bootstrap/css/bootstrap-responsive.css" rel="stylesheet">
 
@@ -59,334 +69,338 @@
 </script>
 
 </head>
-<body style="background: #0769AD">
-	<div class="navbar navbar-fixed-top navbar-inverse">
+<body style="background: #563d7c">
+	<div class="navbar navbar-fixed-top nav-inverse" style="background-color: #473a5d;">
 	<div> 
 			<div class="navbar-inner">
-					<button id="bckBtn" class="btn btn-info btn-medium" type="button">Home</button>
-					<button id="cntBtn" class="btn btn-info btn-medium" type="button">Contact</button>
+					<a class="brand" href="#">v.beta</a>
+					<button id="bckBtn" class="btn btn-medium" type="button">Home</button>
+					<button id="" class="btn btn-medium composeBtn" type="button">Compose</button>
+					<button id="" class="btn btn-medium validateBtn" type="button">Validate</button>
 			</div>
 	</div>
 	</div>
 
 	<div class="container-fluid">
 			<div class="span9" style="color: white;">
-				<h1>Electronic Submissions Filename Tools</h1><h5>(beta)</h5>
-				<h3>Create and validate electronic submission file names for centralized procedures and periodic safety assessment reports.</h3>
+				<h1>Prepare Electronic Submissions</h1>
+				<h2>for the <a class="gen"
+							href='http://esubmission.emea.europa.eu/esubmission.html'
+							target="blank">European Medicines Agency</a></h2>
+
 			</div>
 		
 				<!-- Main hero unit for a primary marketing message or call to action -->
-			<div class="hero-unit span15" style="height:50%" id="init">
-					<p class='lead'> 
-						
-						To be used by anyone interested in submitting files to the <a
-							href='http://esubmission.emea.europa.eu/esubmission.html'
-							target="blank"> European Medicines Agency eSubmissions systems.</a>
-						<br/>The rules and conventions applied for the creation and validation of the filenames can be found in <a
-							href='http://esubmission.emea.europa.eu/gateway/Annex1%20-%20A%20guide%20to%20the%20filenaming%20convention%20for%20eSubmission.pdf'
-							target='blank'>this guide.</a> 
-				</p>
-			<div class="row" >
+		<div class="hero-unit span15"  style=" color: #563d7c;">
+			<div class="row-fluid"  id="init">
+			<h4>Create and validate electronic submission file names for centralized procedures and periodic safety assessment reports.
+				<br/>The rules and conventions applied for the creation and validation of the filenames can be found in <a
+				href='http://esubmission.emea.europa.eu/gateway/Annex1%20-%20A%20guide%20to%20the%20filenaming%20convention%20for%20eSubmission.pdf'
+				target='blank'>this document.</a>
+				</h4>
+
 				<div class="span4 offset1">
-					<button id="composeBtn" class="btn btn-primary btn-large"
-						style="width: 100%; height: 100%">Compose a new
+					<button id="composeBtn" class="btn btn-large composeBtn"
+						style="width: 100%; height: 100%; color: #563d7c;">Compose a new
 						filename</button>
 				</div>
 				<div class="span4 offset1">
-					<button id="validateBtn" class="btn btn-primary btn-large"
-						style="width: 100%; height: 100%">Validate an existing
+					<button class="btn btn-large validateBtn"
+						style="width: 100%; height: 100%; color: #563d7c;">Validate an existing
 						filename</button>
 				</div>
 			</div>
-		</div>
 
-		<div id="create" class="hero-unit span10" style="display: none;">
-			<div class="control-group">
-				<label class="control-label" for="subType" ><h4>Select submission type</h4></label>
-				<div class="controls">
-					<select class="input-xxlarge" id="subType">
-						<option value="cap">Centralised</option>
-						<option value="cap_nap">PSUR CAP & NAP</option>
-						<option value="nap">PSUR NAP</option>
-					</select>
+			<div id="create" class="span10" style="display: none; align:center; margin-top:20px">
+				<legend style="color: #563d7c;"><h3>Compose file name</h3></legend>
+				<div class="control-group">
+						<div class="controls">
+						<label class="control-label" for="inputSender"><h4>Select submission type:</h4><label>
+							<select class="input-xxlarge" id="subType">
+								<option value="cap">Centralised</option>
+								<option value="cap_nap">PSUR CAP & NAP</option>
+								<option value="nap">PSUR NAP</option>
+							</select>
+						</div>
 				</div>
+				<form class="form-horizontal hero-unit" id="caps">
+					<legend style="color: #563d7c;"><h4>Enter the following details:</h4></legend>
+					<div class="control-group">
+						<label class="control-label" for="inputSender">Sender
+							Routing Id:</label>
+						<div class="controls">
+							<input class="input-xxlarge" type="text" id="inputSender"
+								name="inputSender"  
+								data-required="true" placeholder="Enter Id" />
+								 <span class="help-inline">Field is Mandatory</span>
+						</div>
+					</div>
+					<div class="control-group">
+						<label class="control-label" for="receipient">Recipient:</label>
+						<div class="controls">
+							<select class="input-xxlarge" 
+								data-required="true" id="receipient" name="receipient">
+								<option value="default"></option>
+								<option value="ESUBPROD">Production</option>
+								<option value="ESUBTEST">Test</option>
+							</select>
+							<span class="help-inline">Field is Mandatory</span>
+						</div>
+					</div>
+					<div class="control-group">
+						<label class="control-label" for="inputPNumber">Product
+							Number:</label>
+						<div class="controls">
+							<input class="input-xxlarge" type="text" id="inputPNumber"
+								name="inputPNumber" 
+								data-required="true" placeholder="Enter Product Number">
+								<span class="help-inline">Field is Mandatory</span>
+						</div>
+					</div>
+					<div class="control-group">
+						<label class="control-label" for="inputPName">Product Name</label>
+						<div class="controls">
+							<input class="input-xxlarge" type="text" id="inputPName"
+								name="inputPName"   
+								data-required="true" placeholder="Enter Product Name">
+								<span class="help-inline">Field is Mandatory</span>
+						</div>
+					</div>
+					<div class="control-group">
+						<label class="control-label" for="inputSubType">Submission
+							Type</label>
+						<div class="controls">
+							<input class="input-xxlarge" type="text" id="inputSubType"
+								name="inputSubType"   
+								data-required="true" placeholder="Enter Submission Type">
+								<span class="help-inline">Field is Mandatory</span>
+						</div>
+					</div>
+					<div class="control-group">
+						<label class="control-label" for="inputSeqnumber">Sequence
+							Number</label>
+						<div class="controls">
+							<input class="input-xxlarge" type="text" id="inputSeqnumber"
+								name="inputSeqnumber"   
+								data-required="true" placeholder="Enter Sequence Number">
+							<span class="help-inline">Field is Mandatory</span>
+						</div>
+					</div>
+					<div style="float: center; margin-top: 25px">
+						<button class="btn generateBtn" type="button">Generate
+							filename</button>
+					</div>
+					<div class="result"></div>				
+				</form>
+				<form id="caps_naps" class="form-horizontal hero-unit">
+					<legend style="color: #563d7c;"><h4>Enter the following details:</h4></legend>
+					<div class="control-group">
+						<label class="control-label" for="inputSender">Sender
+							RoutingId</label>
+						<div class="controls">
+							<input class="input-xxlarge" type="text" id="inputSender"
+								name="inputSender"   data-required="true"
+								placeholder="Enter Sender RoutingId">
+								<span class="help-inline">Field is Mandatory</span>
+						</div>
+					</div>
+					<div class="control-group">
+						<label class="control-label" for="receipient">Recipient</label>
+						<div class="controls">
+							<select class="input-xxlarge" id="receipient" name="receipient"
+								data-required="true">
+								<option value="default"></option>
+								<option value="ESUBPROD">Production</option>
+								<option value="ESUBTEST">Test</option>
+							</select>
+							<span class="help-inline">Field is Mandatory</span>
+						</div>
+					</div>
+					<div class="control-group">
+						<label class="control-label" for="inputPnumber">Product
+							Number</label>
+						<div class="controls">
+							<input class="input-xxlarge" type="text" id="inputPnumber"
+								name="inputPNumber"
+								data-required="true" placeholder="Enter Product Number">
+								<span class="help-inline">Field is Mandatory</span>
+						</div>
+					</div>
+					<div class="control-group">
+						<label class="control-label" for="inputPName">Product Name</label>
+						<div class="controls">
+							<input class="input-xxlarge" type="text" id="inputPName"
+								name="inputPName" 
+								data-required="true" placeholder="Enter Product Name">
+								<span class="help-inline">Field is Mandatory</span>
+						</div>
+					</div>
+					<div class="control-group">
+						<label class="control-label" for="inputEurd">Eurd Id</label>
+						<div class="controls">
+							<input class="input-xxlarge" type="text" id="inputEurd"
+								name="inputEurd"
+								data-required="true" placeholder="Enter Eurd Id">
+								<span class="help-inline">Field is Mandatory</span>
+						</div>
+					</div>
+					<div class="control-group">
+						<label class="control-label" for="inputSub">Substance Name</label>
+						<div class="controls">
+							<input class="input-xxlarge" type="text" id="inputSub"
+								name="inputSub"
+								data-required="true" placeholder="Enter Substance Name">
+								<span class="help-inline">Field is Mandatory</span>
+						</div>
+					</div>
+					<div class="control-group">
+						<label class="control-label" for="inputMAH">MAH</label>
+						<div class="controls">
+							<input class="input-xxlarge" type="text" id="inputMAH"
+								name="inputMAH"   
+								data-required="true" placeholder="Enter MAH">
+								<span class="help-inline">Field is Mandatory</span>
+						</div>
+					</div>
+					<div class="control-group">
+						<label class="control-label" for="inputEurDate">Eurd Date</label>
+						<div class="controls">
+							<input class="input-xxlarge" type="text" id="inputEurDate"
+								name="inputEurDate"   
+								data-required="true" placeholder="Enter Eurd Date">
+								<span class="help-inline">Field is Mandatory</span>
+						</div>
+					</div>
+					<div class="control-group">
+						<label class="control-label" for="inputSubType">Submission
+							Type</label>
+						<div class="controls">
+							<input class="input-xxlarge" type="text" id="inputSubType"
+								name="inputSubType"   
+								data-required="true" placeholder="Enter Submission Type">
+								<span class="help-inline">Field is Mandatory</span>
+						</div>
+					</div>
+					<div class="control-group">
+						<label class="control-label" for="inputSubType">Sequence
+							Number</label>
+						<div class="controls">
+							<input class="input-xxlarge" type="text" id="inputSeqNumber"
+								name="inputSeqNumber"   
+								data-required="true" placeholder="Enter Sequence Number">
+								<span class="help-inline">Field is Mandatory</span>
+						</div>
+					</div>
+					<div style="float: center; margin-top: 25px">
+						<button class="btn btn-large generateBtn" type="button">Generate
+							filename</button>
+					</div>
+					<div class="result"></div>
+				</form>
+				<form id="naps" class="form-horizontal hero-unit">
+					<legend style="color: #563d7c;"><h4>Enter the following details:</h4></legend>
+					<div class="control-group">
+						<label class="control-label" for="inputSender">Sender
+							RoutingId</label>
+						<div class="controls">
+							<input class="input-xxlarge" type="text" id="inputSender"
+								name="inputSender"   
+								data-required="true" placeholder="Sender RoutingId">
+								<span class="help-inline">Field is Mandatory</span>
+						</div>
+					</div>
+					<div class="control-group">
+						<label class="control-label" for="receipient">Recipient</label>
+						<div class="controls">
+							<select class="input-xxlarge" id="receipient" name="receipient"
+								data-required="true">
+								<option value="default"></option>
+								<option value="ESUBPROD">Production</option>
+								<option value="ESUBTEST">Test</option>
+							</select>
+						</div>
+					</div>
+					<div class="control-group">
+						<label class="control-label" for="inputEurd">Eurd Id</label>
+						<div class="controls">
+							<input class="input-xxlarge" type="text" id="inputEurd"
+								name="inputEurd"   
+								data-required="true" placeholder="Enter Eurd Id">
+								<span class="help-inline">Field is Mandatory</span>
+						</div>
+					</div>
+					<div class="control-group">
+						<label class="control-label" for="inputSub">Substance Name</label>
+						<div class="controls">
+							<input class="input-xxlarge" type="text" id="inputSub"
+								name="inputSub"   
+								data-required="true" placeholder="Enter Substance Name">
+								<span class="help-inline">Field is Mandatory</span>
+						</div>
+					</div>
+					<div class="control-group">
+						<label class="control-label" for="inputMAH">MAH</label>
+						<div class="controls">
+							<input class="input-xxlarge" type="text" id="inputMAH"
+								name="inputMAH"   
+								data-required="true" placeholder="Enter MAH">
+								<span class="help-inline">Field is Mandatory</span>
+						</div>
+					</div>
+					<div class="control-group">
+						<label class="control-label" for="inputEurDate">Eurd Date</label>
+						<div class="controls">
+							<input class="input-xxlarge" type="text" id="inputEurDate"
+								name="inputEurDate"   
+								data-required="true" placeholder="Enter Eurd Date">
+								<span class="help-inline">Field is Mandatory</span>
+						</div>
+					</div>
+					<div class="control-group">
+						<label class="control-label" for="inputSubType">Submission
+							Type</label>
+						<div class="controls">
+							<input class="input-xxlarge" type="text" id="inputSubType"
+								name="inputSubType"   
+								data-required="true" placeholder="Enter Submission Type">
+								<span class="help-inline">Field is Mandatory</span>
+						</div>
+					</div>
+					<div class="control-group">
+						<label class="control-label" for="inputSubType">Sequence
+							Number</label>
+						<div class="controls">
+							<input class="input-xxlarge" type="text" id="inputSeqNumber"
+								name="inputSeqNumber"   
+								data-required="true" placeholder="Enter Sequence Number">
+								<span class="help-inline">Field is Mandatory</span>
+						</div>
+					</div>
+					<div style="float: center; margin-top: 25px">
+						<button class="btn btn-medium generateBtn"
+							type="button">Generate filename</button>
+					</div>
+					<div class="result"></div>
+				</form>
 			</div>
-			<form class="form-horizontal" id="caps">
-				<legend><h4>Enter the following details:</h4></legend>
-				<div class="control-group">
-					<label class="control-label" for="inputSender">Sender
-						Routing Id:</label>
-					<div class="controls">
-						<input class="input-xxlarge" type="text" id="inputSender"
-							name="inputSender"  class="input-small"
-							data-required="true" placeholder="Enter Id" />
-							 <span class="help-inline">Field is Mandatory</span>
-					</div>
-				</div>
-				<div class="control-group">
-					<label class="control-label" for="receipient">Recipient:</label>
-					<div class="controls">
-						<select class="input-xxlarge" class="input-small"
-							data-required="true" id="receipient" name="receipient">
-							<option value="default"></option>
-							<option value="ESUBPROD">Production</option>
-							<option value="ESUBTEST">Test</option>
-						</select>
-						<span class="help-inline">Field is Mandatory</span>
-					</div>
-				</div>
-				<div class="control-group">
-					<label class="control-label" for="inputPNumber">Product
-						Number:</label>
-					<div class="controls">
-						<input class="input-xxlarge" type="text" id="inputPNumber"
-							name="inputPNumber" class="input-small"
-							data-required="true" placeholder="Enter Product Number">
+			<div class="span10" id="validate" style="display: none;color: #563d7c;">
+				<legend style="color: #563d7c;"><h3>Validate</h3></legend>
+				<form id="validateForm" class="form-vertical hero-unit">
+					<div class="control-group">
+						<label class="control-label" for="inputVal"><h4>Enter filename:</h4></label>					
+						<div class="controls">
+							<input type="text" style="width:65%" data-required="true"
+								id="inputVal" name="inputVal"
+								placeholder="Enter eSubmissions file name">
 							<span class="help-inline">Field is Mandatory</span>
+						</div>
+	
 					</div>
-				</div>
-				<div class="control-group">
-					<label class="control-label" for="inputPName">Product Name</label>
-					<div class="controls">
-						<input class="input-xxlarge" type="text" id="inputPName"
-							name="inputPName"   class="input-small"
-							data-required="true" placeholder="Enter Product Name">
-							<span class="help-inline">Field is Mandatory</span>
-					</div>
-				</div>
-				<div class="control-group">
-					<label class="control-label" for="inputSubType">Submission
-						Type</label>
-					<div class="controls">
-						<input class="input-xxlarge" type="text" id="inputSubType"
-							name="inputSubType"   class="input-small"
-							data-required="true" placeholder="Enter Submission Type">
-							<span class="help-inline">Field is Mandatory</span>
-					</div>
-				</div>
-				<div class="control-group">
-					<label class="control-label" for="inputSeqnumber">Sequence
-						Number</label>
-					<div class="controls">
-						<input class="input-xxlarge" type="text" id="inputSeqnumber"
-							name="inputSeqnumber"   class="input-small"
-							data-required="true" placeholder="Enter Sequence Number">
-						<span class="help-inline">Field is Mandatory</span>
-					</div>
-				</div>
-				<div style="float: center; margin-top: 25px">
-					<button class="btn btn-primary btn-large generateBtn" type="button">Generate
-						filename</button>
-				</div>
-				<div class="result"></div>				
-			</form>
-			<form id="caps_naps" class="form-horizontal hero-unit">
-				<legend>Enter the following details about the submission:</legend>
-				<div class="control-group">
-					<label class="control-label" for="inputSender">Sender
-						RoutingId</label>
-					<div class="controls">
-						<input class="input-xxlarge" type="text" id="inputSender"
-							name="inputSender"   data-required="true"
-							placeholder="Enter Sender RoutingId">
-							<span class="help-inline">Field is Mandatory</span>
-					</div>
-				</div>
-				<div class="control-group">
-					<label class="control-label" for="receipient">Recipient</label>
-					<div class="controls">
-						<select class="input-xxlarge" id="receipient" name="receipient"
-							data-required="true">
-							<option value="default"></option>
-							<option value="ESUBPROD">Production</option>
-							<option value="ESUBTEST">Test</option>
-						</select>
-						<span class="help-inline">Field is Mandatory</span>
-					</div>
-				</div>
-				<div class="control-group">
-					<label class="control-label" for="inputPnumber">Product
-						Number</label>
-					<div class="controls">
-						<input class="input-xxlarge" type="text" id="inputPnumber"
-							name="inputPNumber"   class="input-small"
-							data-required="true" placeholder="Enter Product Number">
-							<span class="help-inline">Field is Mandatory</span>
-					</div>
-				</div>
-				<div class="control-group">
-					<label class="control-label" for="inputPName">Product Name</label>
-					<div class="controls">
-						<input class="input-xxlarge" type="text" id="inputPName"
-							name="inputPName"   class="input-small"
-							data-required="true" placeholder="Enter Product Name">
-							<span class="help-inline">Field is Mandatory</span>
-					</div>
-				</div>
-				<div class="control-group">
-					<label class="control-label" for="inputEurd">Eurd Id</label>
-					<div class="controls">
-						<input class="input-xxlarge" type="text" id="inputEurd"
-							name="inputEurd"   class="input-small"
-							data-required="true" placeholder="Enter Eurd Id">
-							<span class="help-inline">Field is Mandatory</span>
-					</div>
-				</div>
-				<div class="control-group">
-					<label class="control-label" for="inputSub">Substance Name</label>
-					<div class="controls">
-						<input class="input-xxlarge" type="text" id="inputSub"
-							name="inputSub"   class="input-small"
-							data-required="true" placeholder="Enter Substance Name">
-							<span class="help-inline">Field is Mandatory</span>
-					</div>
-				</div>
-				<div class="control-group">
-					<label class="control-label" for="inputMAH">MAH</label>
-					<div class="controls">
-						<input class="input-xxlarge" type="text" id="inputMAH"
-							name="inputMAH"   class="input-small"
-							data-required="true" placeholder="Enter MAH">
-							<span class="help-inline">Field is Mandatory</span>
-					</div>
-				</div>
-				<div class="control-group">
-					<label class="control-label" for="inputEurDate">Eurd Date</label>
-					<div class="controls">
-						<input class="input-xxlarge" type="text" id="inputEurDate"
-							name="inputEurDate"   class="input-small"
-							data-required="true" placeholder="Enter Eurd Date">
-							<span class="help-inline">Field is Mandatory</span>
-					</div>
-				</div>
-				<div class="control-group">
-					<label class="control-label" for="inputSubType">Submission
-						Type</label>
-					<div class="controls">
-						<input class="input-xxlarge" type="text" id="inputSubType"
-							name="inputSubType"   class="input-small"
-							data-required="true" placeholder="Enter Submission Type">
-							<span class="help-inline">Field is Mandatory</span>
-					</div>
-				</div>
-				<div class="control-group">
-					<label class="control-label" for="inputSubType">Sequence
-						Number</label>
-					<div class="controls">
-						<input class="input-xxlarge" type="text" id="inputSeqNumber"
-							name="inputSeqNumber"   class="input-small"
-							data-required="true" placeholder="Enter Sequence Number">
-							<span class="help-inline">Field is Mandatory</span>
-					</div>
-				</div>
-				<div style="float: center; margin-top: 25px">
-					<button class="btn btn-primary btn-large generateBtn" type="button">Generate
-						filename</button>
-				</div>
-				<div class="result"></div>
-			</form>
-			<form id="naps" class="form-horizontal hero-unit">
-				<legend>Enter the following details about the submission:</legend>
-				<div class="control-group">
-					<label class="control-label" for="inputSender">Sender
-						RoutingId</label>
-					<div class="controls">
-						<input class="input-xxlarge" type="text" id="inputSender"
-							name="inputSender"   class="input-small"
-							data-required="true" placeholder="Sender RoutingId">
-							<span class="help-inline">Field is Mandatory</span>
-					</div>
-				</div>
-				<div class="control-group">
-					<label class="control-label" for="receipient">Recipient</label>
-					<div class="controls">
-						<select class="input-xxlarge" id="receipient" name="receipient"
-							data-required="true">
-							<option value="default"></option>
-							<option value="ESUBPROD">Production</option>
-							<option value="ESUBTEST">Test</option>
-						</select>
-					</div>
-				</div>
-				<div class="control-group">
-					<label class="control-label" for="inputEurd">Eurd Id</label>
-					<div class="controls">
-						<input class="input-xxlarge" type="text" id="inputEurd"
-							name="inputEurd"   class="input-small"
-							data-required="true" placeholder="Enter Eurd Id">
-							<span class="help-inline">Field is Mandatory</span>
-					</div>
-				</div>
-				<div class="control-group">
-					<label class="control-label" for="inputSub">Substance Name</label>
-					<div class="controls">
-						<input class="input-xxlarge" type="text" id="inputSub"
-							name="inputSub"   class="input-small"
-							data-required="true" placeholder="Enter Substance Name">
-							<span class="help-inline">Field is Mandatory</span>
-					</div>
-				</div>
-				<div class="control-group">
-					<label class="control-label" for="inputMAH">MAH</label>
-					<div class="controls">
-						<input class="input-xxlarge" type="text" id="inputMAH"
-							name="inputMAH"   class="input-small"
-							data-required="true" placeholder="Enter MAH">
-							<span class="help-inline">Field is Mandatory</span>
-					</div>
-				</div>
-				<div class="control-group">
-					<label class="control-label" for="inputEurDate">Eurd Date</label>
-					<div class="controls">
-						<input class="input-xxlarge" type="text" id="inputEurDate"
-							name="inputEurDate"   class="input-small"
-							data-required="true" placeholder="Enter Eurd Date">
-							<span class="help-inline">Field is Mandatory</span>
-					</div>
-				</div>
-				<div class="control-group">
-					<label class="control-label" for="inputSubType">Submission
-						Type</label>
-					<div class="controls">
-						<input class="input-xxlarge" type="text" id="inputSubType"
-							name="inputSubType"   class="input-small"
-							data-required="true" placeholder="Enter Submission Type">
-							<span class="help-inline">Field is Mandatory</span>
-					</div>
-				</div>
-				<div class="control-group">
-					<label class="control-label" for="inputSubType">Sequence
-						Number</label>
-					<div class="controls">
-						<input class="input-xxlarge" type="text" id="inputSeqNumber"
-							name="inputSeqNumber"   class="input-small"
-							data-required="true" placeholder="Enter Sequence Number">
-							<span class="help-inline">Field is Mandatory</span>
-					</div>
-				</div>
-				<div style="float: center; margin-top: 25px">
-					<button class="btn btn-primary btn-medium generateBtn"
-						type="button">Generate filename</button>
-				</div>
-				<div class="result"></div>
-			</form>
-		</div>
-		<div class="hero-unit span10" id="validate" style="display: none">
-			<form id="validateForm" class="form-vertical hero-unit">
-			<legend><h4>Enter the filename that you would like to validate:</h4></legend>
-				<div class="control-group">
-					<div class="controls">
-						<input type="text" style="width:65%" data-required="true"
-							id="inputVal" name="inputVal"
-							placeholder="Enter eSubmissions file name">
-						<span class="help-inline">Field is Mandatory</span>
-					</div>
-
-				</div>
-									<button id="btnValidate" class="btn btn-primary btn-medium"
-						type="button">Validate</button>
-				<div class="result"></div>
-			</form>
+					<button id="btnValidate" class="btn btn-medium"
+							type="button">Validate</button>
+					<div class="result"></div>
+				</form>
+			</div>
 		</div>
 	</div>
 	<!-- /container -->

@@ -4,7 +4,7 @@
 		$('#caps_naps').hide();
 		$('#naps').hide();
 		
-		$('#composeBtn').on('click', function(){
+		$('.composeBtn').on('click', function(){
 			$('#init').hide();
 			$('#validate').hide();
 			$('#create').show();
@@ -24,7 +24,7 @@
 			$('.help-inline').hide();
 		})
 		
-		$('#validateBtn').on('click', function(){
+		$('.validateBtn').on('click', function(){
 			$('#init').hide();
 			$('#create').hide();
 			$('#validate').show();
